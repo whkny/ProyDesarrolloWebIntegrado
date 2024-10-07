@@ -45,6 +45,34 @@ public class Negocio {
      }
      return lista;
  }   
+ 
+ 
+ // PRUEBA COMENTARIOGUTHUB
+   public Alumno PRUEBAAAAA(String cod){
+     Alumno p=null;
+     Connection cn=MySQLConexion.getConexion();
+     try{
+      String sql="select  idalumno,apealumno,nomalumno,idesp,proce\n" +
+"   from alumno where idalumno=?";
+      PreparedStatement st=cn.prepareStatement(sql);
+      st.setString(1, cod);
+      ResultSet rs=st.executeQuery();
+      if(rs.next()){
+          p=new Alumno();
+          p.setCoda(rs.getString(1));
+          p.setApea(rs.getString(2));
+          p.setNoma(rs.getString(3));
+          p.setCode(rs.getString(4));
+          p.setProce(rs.getString(5));
+      }
+     }catch(Exception ex){
+        ex.printStackTrace();
+     }
+     return p;
+ }   
+ 
+ 
+ 
  //buscar por codigo
  public Alumno busAlu(String cod){
      Alumno p=null;
