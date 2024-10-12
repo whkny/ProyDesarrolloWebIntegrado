@@ -81,32 +81,33 @@ VALUES
 ('CLI002', 'María Gómez', '456 Calle Secundaria, Callao', '987654654', 'mgomez@correo.com', '41523658', '123qwe');
 
 
+-- Tabla CarritoCompras
 CREATE TABLE CarritoCompras (
   id_carrito VARCHAR(10) PRIMARY KEY, -- Ejemplo de ID: 'CARR001'
   id_cliente VARCHAR(10), -- Clave foránea de Cliente
-  productos JSON, -- Productos en formato JSON
+  productos TEXT NOT NULL, -- Productos en formato JSON simplificado a TEXT
+  fecha_creacion DATE NOT NULL, -- Fecha de creación del carrito
+  estado VARCHAR(20) DEFAULT 'pendiente', -- Estado del carrito (pendiente, pagado, cancelado)
   FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
 );
 
-
-
+-- Tabla Pedido
 CREATE TABLE Pedido (
   id_pedido VARCHAR(10) PRIMARY KEY, -- Ejemplo de ID: 'PED001'
   id_carrito VARCHAR(10), -- Clave foránea de CarritoCompras
-  fecha_pedido DATE,
-  estado VARCHAR(50),
+  fecha_pedido DATE NOT NULL,
+  estado VARCHAR(50) DEFAULT 'pendiente', -- Estado del pedido (pendiente, enviado, entregado)
   fecha_entrega DATE,
   FOREIGN KEY (id_carrito) REFERENCES CarritoCompras(id_carrito)
 );
 
-
-
+-- Tabla Pago
 CREATE TABLE Pago (
   id_pago VARCHAR(10) PRIMARY KEY, -- Ejemplo de ID: 'PAY001'
   id_pedido VARCHAR(10), -- Clave foránea de Pedido
-  metodo_pago VARCHAR(50),
-  monto DECIMAL(10, 2),
-  fecha DATE,
+  metodo_pago VARCHAR(50) NOT NULL,
+  monto DECIMAL(10, 2) NOT NULL,
+  fecha DATE NOT NULL,
   FOREIGN KEY (id_pedido) REFERENCES Pedido(id_pedido)
 );
 

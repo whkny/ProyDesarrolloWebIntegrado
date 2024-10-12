@@ -22,7 +22,7 @@
                     </li>
                                      
                     <li>
-                        <a class="nav-link" href="pagEspecial.jsp">Especialidada</a>
+                        <a class="nav-link" href="pagEspecial.jsp">Proveedores</a>
                     </li> 
                     <li>
                         <a class="nav-link" href="./control?opc=5">Boleta de Nota</a>
