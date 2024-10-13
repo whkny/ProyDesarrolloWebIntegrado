@@ -138,7 +138,6 @@
     <a href="pagCrudProv.jsp">PROVEEDORES</a>
     <a href="pagVentas.jsp">VENTAS</a>
     <a href="pagProducto.jsp">PRODUCTOS</a>
-    <a href="tel:+123456789" class="btn-llamar" aria-label="Llamar ahora a la tienda">LLAMAR AHORA</a>
 </nav>
 
 <!-- Texto centrado en la página -->
