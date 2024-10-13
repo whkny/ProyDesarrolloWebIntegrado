@@ -4,97 +4,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu Principal</title>
+    <meta name="description" content="Vega's Store - La máxima calidad para nuestros clientes. Encuentra productos de primera calidad en nuestra tienda.">
+    <meta name="keywords" content="Tienda, Calidad, Productos, Ventas, Proveedores">
+    <title>Menu Principal - Vega's Store</title>
     <link rel="stylesheet" href="styles.css"> <!-- Enlazando el archivo CSS -->
     <style>
-        /* Estilos del menú */
-        body {
-            font-family: Arial, sans-serif;
+        /* Estilos generales */
+        body, html {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            height: 100%;
         }
 
-        header {
-            background-color: #4CAF50;
+        /* Imagen de fondo */
+        body {
+            background: url('fotos/FONDOMENU.jpg') no-repeat center center fixed;
+            background-size: cover;
             color: white;
-            padding: 10px 20px;
-            text-align: center;
         }
 
+        /* Encabezado del sitio */
+        header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con transparencia */
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Menú en la parte superior derecha con difuminado negro */
         nav {
-            background-color: #333;
-            overflow: hidden;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.6); /* Fondo negro semi-transparente */
+            padding: 10px 20px;
+            border-radius: 5px;
         }
 
         nav a {
-            float: left;
-            display: block;
             color: white;
-            text-align: center;
-            padding: 14px 16px;
             text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .menu-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .menu-item {
             margin: 0 15px;
-            padding: 15px;
-            background-color: #4CAF50;
-            color: white;
+            font-size: 18px; /* Aumentando el tamaño de las letras */
+            padding: 8px 16px;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
 
-        .menu-item:hover {
-            background-color: #45a049;
-            cursor: pointer;
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.3); /* Efecto hover con transparencia */
         }
 
-        footer {
+        /* Botón con borde blanco */
+        .btn-llamar {
+            border: 2px solid white;
+            padding: 8px 16px;
+            border-radius: 5px;
+        }
+
+        /* Texto central */
+        .central-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: white;
-            position: relative;
+        }
+
+        .central-text h2 {
+            font-size: 60px;
+            margin: 0;
+        }
+
+        .central-text p {
+            font-size: 30px;
+            margin: 10px 0 0;
+        }
+
+        /* Estilo del pie de página */
+        footer {
+            position: absolute;
             bottom: 0;
             width: 100%;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Fondo negro semi-transparente */
+            text-align: center;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px;
+                width: 100%;
+            }
+
+            nav a {
+                margin: 5px 0;
+                font-size: 16px;
+            }
+
+            .central-text h2 {
+                font-size: 40px;
+            }
+
+            .central-text p {
+                font-size: 20px;
+            }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>UTP Store</h1>
+    <h1>Sistema Control de Ventas</h1>
 </header>
 
+<!-- Menú en la esquina superior derecha con difuminado y botón especial -->
 <nav>
-    <div class="menu-container">
-        <div class="menu-item" onclick="window.location.href='pagCrudProv.jsp'">Proveedores</div>
-        <div class="menu-item" onclick="window.location.href='pagProducto.jsp'">Productos</div>
-        <div class="menu-item" onclick="window.location.href='pagVentas.jsp'">Ventas</div>
-    </div>
+    <a href="Menu_Principal.jsp">INICIO</a>
+    <a href="pagCrudProv.jsp">PROVEEDORES</a>
+    <a href="pagVentas.jsp">VENTAS</a>
+    <a href="pagProducto.jsp">PRODUCTOS</a>
+    <a href="tel:+123456789" class="btn-llamar" aria-label="Llamar ahora a la tienda">LLAMAR AHORA</a>
 </nav>
 
-<main>
-    <h2>Menu Principal</h2>
-    <p>   </p>
-</main>
+<!-- Texto centrado en la página -->
+<div class="central-text">
+    <h2>Vega's Store</h2>
+    <p>La máxima calidad para nuestros clientes</p>
+</div>
 
 <footer>
-    <p>&copy; Universidad Tecnologica del Peru</p>
+    <p>&copy; 2024 Universidad Tecnológica del Perú</p>
 </footer>
 
 </body>
