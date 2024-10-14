@@ -4,10 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Vega's Store - La máxima calidad para nuestros clientes. Encuentra productos de primera calidad en nuestra tienda.">
-    <meta name="keywords" content="Tienda, Calidad, Productos, Ventas, Proveedores">
     <title>Menu Principal - Vega's Store</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Enlazando el archivo CSS -->
+    <!-- Enlazando el archivo CSS -->
+    <link rel="stylesheet" href="styles.css"> 
     <style>
         /* Estilos generales */
         body, html {
@@ -129,10 +128,10 @@
 <body>
 
 <header>
-    <h1>Sistema Control de Ventas</h1>
+    <h1>Menu Principal</h1>
 </header>
 
-<!-- Menú en la esquina superior derecha con difuminado y botón especial -->
+<!-- Menú   -->
 <nav>
     <a href="Menu_Principal.jsp">INICIO</a>
     <a href="pagCrudProv.jsp">PROVEEDORES</a>
@@ -140,10 +139,10 @@
     <a href="pagProducto.jsp">PRODUCTOS</a>
 </nav>
 
-<!-- Texto centrado en la página -->
+<!-- Texto centrado   -->
 <div class="central-text">
     <h2>Vega's Store</h2>
-    <p>La máxima calidad para nuestros clientes</p>
+    <p>La máxima calidad para nuestros clientes. Encuentra productos de primera calidad en nuestra tienda.</p>
 </div>
 
 <footer>

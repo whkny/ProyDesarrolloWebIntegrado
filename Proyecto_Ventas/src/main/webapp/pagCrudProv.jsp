@@ -12,12 +12,12 @@
     <title>Gestión de Proveedores</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Colores personalizados */
+         
         :root {
-            --dark-color: #243642; /* Color para la cabecera, pie de página */
-            --medium-dark-color: #387478; /* Color para botones y enlaces */
-            --light-color: #629584; /* Color de fondo de secciones */
-            --extra-light-color: #E2F1E7; /* Color de fondo general */
+            --dark-color: #243642;  
+            --medium-dark-color: #387478;  
+            --light-color: #629584; 
+            --extra-light-color: #E2F1E7;  
         }
 
         /* Estilos generales */
@@ -25,20 +25,20 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: var(--extra-light-color); /* Fondo muy claro */
-            color: var(--dark-color); /* Texto en color oscuro */
+            background-color: var(--extra-light-color);  
+            color: var(--dark-color); 
         }
 
-        /* Estilos de la cabecera y el menú */
+        /* Estilos de la cabecera  */
         header {
-            background-color: var(--dark-color); /* Cabecera con color oscuro */
+            background-color: var(--dark-color);  
             color: white;
             padding: 20px;
             text-align: center;
         }
 
         nav {
-            background-color: var(--medium-dark-color); /* Color intermedio para el menú */
+            background-color: var(--medium-dark-color);
             padding: 10px;
             text-align: center;
         }
@@ -54,7 +54,7 @@
         }
 
         nav a:hover {
-            background-color: var(--light-color); /* Color claro al hacer hover */
+            background-color: var(--light-color); 
         }
 
         /* Estilos del contenido */
@@ -65,7 +65,7 @@
         }
 
         form {
-            background-color: var(--light-color); /* Fondo de formularios en color claro */
+            background-color: var(--light-color); 
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -78,12 +78,12 @@
             width: calc(100% - 22px);
             padding: 10px;
             margin: 10px 0;
-            border: 1px solid var(--dark-color); /* Borde oscuro */
+            border: 1px solid var(--dark-color); 
             border-radius: 4px;
         }
 
         button {
-            background-color: var(--medium-dark-color); /* Botones en color intermedio */
+            background-color: var(--medium-dark-color); 
             color: white;
             padding: 10px 15px;
             border: none;
@@ -93,7 +93,7 @@
         }
 
         button:hover {
-            background-color: var(--dark-color); /* Hover en color más oscuro */
+            background-color: var(--dark-color); 
         }
 
         table {
@@ -108,36 +108,36 @@
         th, td {
             padding: 12px;
             text-align: left;
-            border-bottom: 1px solid var(--light-color); /* Bordes en color claro */
+            border-bottom: 1px solid var(--light-color);
         }
 
         th {
-            background-color: var(--extra-light-color); /* Cabecera de tabla en color claro */
+            background-color: var(--extra-light-color); 
         }
 
         tr:hover {
-            background-color: var(--extra-light-color); /* Hover en filas de tabla */
+            background-color: var(--extra-light-color); 
         }
 
         /* Estilo de acciones en la tabla */
         .acciones button {
-            background-color: var(--dark-color); /* Color oscuro para botones de acciones */
+            background-color: var(--dark-color); 
         }
 
         .acciones button:hover {
-            background-color: var(--medium-dark-color); /* Hover en los botones de acciones */
+            background-color: var(--medium-dark-color); 
         }
 
         /* Estilo del pie de página */
         footer {
-            background-color: var(--dark-color); /* Pie de página con color oscuro */
+            background-color: var(--dark-color); 
             color: white;
             text-align: center;
             padding: 10px;
-            position: relative; /* Cambiado de absolute a relative */
+            position: relative; 
             bottom: 0;
             width: 100%;
-            margin-top: 20px; /* Espaciado para evitar superposición con el contenido */
+            margin-top: 20px; 
         }
     </style>
 </head>
@@ -152,7 +152,6 @@
     <a href="pagCrudProv.jsp">PROVEEDORES</a>
     <a href="pagVentas.jsp">VENTAS</a>
     <a href="pagProducto.jsp">PRODUCTOS</a>
-    <a href="tel:+123456789" class="btn-llamar">LLAMAR AHORA</a>
 </nav>
 
 <h1>Gestión de Proveedores</h1>
@@ -236,7 +235,7 @@
     }
 </script>
 
-<!-- Agregar jQuery y DataTables -->
+<!-- jQuery y DataTables -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
@@ -247,14 +246,14 @@
     $('table').DataTable({
         lengthMenu: [[7, 10, 25, -1], [7, 10, 25, "Todos"]],
         language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json', // Cargar idioma español
+            url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json',  
             paginate: {
-                first: "Primero",   // Texto para el primer botón
-                last: "Último",     // Texto para el último botón
-                next: "Siguiente",   // Texto para el botón siguiente
-                previous: "Anterior" // Texto para el botón anterior
+                first: "Primero",   
+                last: "Último",      
+                next: "Siguiente",   
+                previous: "Anterior"  
             },
-            // Otros textos en español
+ 
             info: "Mostrando del _START_ al _END_ de _TOTAL_ Resultados",
             infoEmpty: "No hay resultados disponibles",
             infoFiltered: "(filtrado de _MAX_ resultados totales)",
@@ -266,7 +265,7 @@
         pagingType: "full_numbers",
         searchDelay: 250,
         columnDefs: [
-            { targets: -1, orderable: false } // Deshabilitar el ordenamiento en la columna de acciones
+            { targets: -1, orderable: false }  
         ]
     });
 });
@@ -274,7 +273,7 @@
 
 <!-- Pie de página -->
 <footer>
-    <p>Derechos reservados - 2024</p>
+    <p>UTP - 2024</p>
 </footer>
 
 </body>
