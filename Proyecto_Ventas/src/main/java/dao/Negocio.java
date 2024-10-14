@@ -170,7 +170,49 @@ public void borrarProveedor(String codEmp) {
     }
 }
 
+// LISTA Productos
+    public List<Productos> ListProducto() {
+        List<Productos> lista = new ArrayList<>();
+        Connection cn = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
 
+        try {
+            cn = MySQLConexion.getConexion();
+            String sql = "select p.id_producto, p.nombre_producto, p.descripcion, p.precio, p.stock, e.nombre_empresa, m.marca_producto  from producto p "
+                    + "left join empresa e on e.id_empresa = p.id_empresa "
+                    + "left join marca m on m.id_marca = p.id_marca";
+            st = cn.prepareStatement(sql);
+            rs = st.executeQuery();
+
+            while (rs.next()) {
+                Productos p = new Productos();
+                p.setId_producto(rs.getString("id_producto"));
+                p.setNombre_producto(rs.getString("nombre_producto"));
+                p.setDescripcion(rs.getString("descripcion"));
+                p.setPrecio(rs.getDouble("precio"));
+                p.setStock(rs.getInt("stock"));
+                p.setNombreEmpresa(rs.getString("nombre_empresa"));
+                p.setMarcaProducto(rs.getString("marca_producto"));
+
+                lista.add(p);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (st != null) st.close();
+                if (cn != null) cn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return lista;
+    }
 
     
+   
+    
+
 }

@@ -11,6 +11,24 @@ public class Productos {
   private int stock;
   private String id_empresa;
   private String id_marca;
+    private String nombreEmpresa;
+    private String marcaProducto;
+
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
+    public String getMarcaProducto() {
+        return marcaProducto;
+    }
+
+    public void setMarcaProducto(String marcaProducto) {
+        this.marcaProducto = marcaProducto;
+    }
 
     public String getId_producto() {
         return id_producto;
@@ -41,16 +59,22 @@ public class Productos {
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+    if (precio < 0) {
+        throw new IllegalArgumentException("El precio no puede ser negativo.");
     }
+    this.precio = precio;
+}
 
     public int getStock() {
         return stock;
     }
 
     public void setStock(int stock) {
-        this.stock = stock;
+    if (stock < 0) {
+        throw new IllegalArgumentException("El stock no puede ser negativo.");
     }
+    this.stock = stock;
+}
 
     public String getId_empresa() {
         return id_empresa;
