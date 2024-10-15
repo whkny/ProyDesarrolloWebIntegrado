@@ -25,17 +25,13 @@ public class Control extends HttpServlet {
         int op = Integer.parseInt(request.getParameter("opc"));
 
         switch (op) {
-            case 2: // Grabar
-                grabarProveedor(request, response);
+            case 2: grabarProveedor(request, response);
                 break;
-            case 3: // Editar
-                editarProveedor(request, response);
+            case 3: editarProveedor(request, response);
                 break;
-            case 4: // Borrar
-                borrarProveedor(request, response);
+            case 4: borrarProveedor(request, response);
                 break;
-            default:
-                response.sendRedirect("pagCrudProv.jsp");
+            default: response.sendRedirect("pagCrudProv.jsp");
                 break;
         }
     }
@@ -81,10 +77,10 @@ public class Control extends HttpServlet {
         proveedor.setTelef_emp(telefono);
         proveedor.setEmail_emp(email);
 
-        // Llamamos al método del DAO para editar el proveedor
+        // Llamamos al método para editar el proveedor
         negocio.modificarProveedor(proveedor);
 
-        // Redirigimos a la página de proveedores
+        // Redirigimos a la pagina de proveedores
         response.sendRedirect("pagCrudProv.jsp");
     }
 
@@ -96,7 +92,7 @@ public class Control extends HttpServlet {
         // Llamamos al método del DAO para borrar el proveedor
         negocio.borrarProveedor(id);
 
-        // Redirigimos a la página de proveedores
+        // Redirigimos a la pagina de proveedores
         response.sendRedirect("pagCrudProv.jsp");
     }
 }

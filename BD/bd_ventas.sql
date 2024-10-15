@@ -482,19 +482,31 @@ INSERT INTO Detalle_venta (id_venta, id_producto, cantidad, precio_unitario) VAL
 
 DELIMITER //
 
+-- Eliminar el procedimiento si ya existe
+DROP PROCEDURE IF EXISTS AgregarProveedor //
 CREATE PROCEDURE AgregarProveedor(
-    IN p_id_empresa VARCHAR(10),
     IN p_nombre_empresa VARCHAR(100),
     IN p_direccion VARCHAR(255),
     IN p_telefono VARCHAR(20),
     IN p_email VARCHAR(100)
 )
 BEGIN
+    DECLARE last_id INT;
+    DECLARE new_id VARCHAR(10);
+    -- Buscar el último  id_empresa
+    SELECT IFNULL(MAX(CAST(SUBSTRING(id_empresa, 4) AS UNSIGNED)), 0) INTO last_id
+    FROM Empresa;
+
+    -- Generar el nuevo ID 
+    SET new_id = CONCAT('EMP', LPAD(last_id + 1, 3, '0'));
+
+    -- Insertar el nuevo proveedor
     INSERT INTO Empresa (id_empresa, nombre_empresa, direccion, telefono, email) 
-    VALUES (p_id_empresa, p_nombre_empresa, p_direccion, p_telefono, p_email);
+    VALUES (new_id, p_nombre_empresa, p_direccion, p_telefono, p_email);
 END //
 
 DELIMITER ;
+
 
 
 -- MODIFICAR
@@ -532,6 +544,61 @@ CREATE PROCEDURE borrarProveedor(
 BEGIN
     DELETE FROM empresa
     WHERE id_empresa = p_cod_emp;
+END //
+
+DELIMITER ;
+
+
+-- SP PARA GRAFICOS 
+
+-- POR MES 
+
+DELIMITER //
+
+CREATE PROCEDURE spVentasPorMes(an INT)
+BEGIN
+    SELECT 
+        CASE MONTH(fecha_venta)
+            WHEN 1 THEN 'Enero'
+            WHEN 2 THEN 'Febrero'
+            WHEN 3 THEN 'Marzo'
+            WHEN 4 THEN 'Abril'
+            WHEN 5 THEN 'Mayo'
+            WHEN 6 THEN 'Junio'
+            WHEN 7 THEN 'Julio'
+            WHEN 8 THEN 'Agosto'
+            WHEN 9 THEN 'Septiembre'
+            WHEN 10 THEN 'Octubre'
+            WHEN 11 THEN 'Noviembre'
+            WHEN 12 THEN 'Diciembre'
+        END AS mes,
+        SUM(total) AS total
+    FROM Venta
+    WHERE YEAR(fecha_venta) = an
+    GROUP BY MONTH(fecha_venta)
+    ORDER BY MONTH(fecha_venta);
+END //
+
+DELIMITER ;
+
+
+
+-- TOP 10 MARCA QUE MAS VENDEN 
+
+DELIMITER //
+
+CREATE PROCEDURE spVentasPorMarca()
+BEGIN
+    SELECT 
+        m.marca_producto AS marca,
+        SUM(d.precio_unitario * d.cantidad) AS total
+    FROM Detalle_venta d
+    INNER JOIN Venta v ON d.id_venta = v.id_venta
+    INNER JOIN Producto p ON d.id_producto = p.id_producto
+    INNER JOIN Marca m ON p.id_marca = m.id_marca
+    GROUP BY m.marca_producto
+    ORDER BY total DESC
+    LIMIT 10;  -- Limitar a las 10 marcas con mayores ventas
 END //
 
 DELIMITER ;

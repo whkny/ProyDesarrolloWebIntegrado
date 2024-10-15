@@ -89,21 +89,23 @@ public class Negocio {
     
     
     
+
+
     
-    // Método para agregar un nuevo proveedor
+
+// Método para agregar un nuevo proveedor
 public boolean agregarProveedor(Empresas proveedor) {
     Connection cn = MySQLConexion.getConexion();
     boolean exito = false; // Variable para indicar el éxito de la operación
     try {
-        String sql = "{CALL AgregarProveedor(?, ?, ?, ?, ?)}"; // Llamada al procedimiento
+        String sql = "{CALL AgregarProveedor(?, ?, ?, ?)}"; // Llamada al procedimiento (sin el id_empresa)
         PreparedStatement st = cn.prepareStatement(sql);
         
-        // Estableciendo los parámetros del procedimiento
-        st.setString(1, proveedor.getCod_emp());
-        st.setString(2, proveedor.getNom_emp());
-        st.setString(3, proveedor.getDirec_emp());
-        st.setString(4, proveedor.getTelef_emp());
-        st.setString(5, proveedor.getEmail_emp());
+        // Estableciendo los parámetros del procedimiento (sin el id_empresa)
+        st.setString(1, proveedor.getNom_emp());
+        st.setString(2, proveedor.getDirec_emp());
+        st.setString(3, proveedor.getTelef_emp());
+        st.setString(4, proveedor.getEmail_emp());
 
         // Ejecutando el procedimiento
         st.executeUpdate();
@@ -122,7 +124,8 @@ public boolean agregarProveedor(Empresas proveedor) {
     return exito; // Retornar el resultado de la operación
 }
 
-    
+
+
     
 // Método para modificar proveedor
 public void modificarProveedor(Empresas proveedor) {
@@ -212,7 +215,51 @@ public void borrarProveedor(String codEmp) {
     }
 
     
-   
+   // GRAFICOS 
     
+    
+   public List<Integer> LisMes(int anio) {
+        List<Integer> ventasPorMes = new ArrayList<>();
+        String sql = "CALL spVentasPorMes(?)"; // Llamar al procedimiento almacenado
 
+        try (Connection con = MySQLConexion.getConexion(); 
+             PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setInt(1, anio);
+            ResultSet rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                ventasPorMes.add(rs.getInt("total")); // Obtener total de ventas por mes
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return ventasPorMes;
+    }
+
+    
+ // Nuevo método para obtener ventas por marca
+public List<MarcaVenta> obtenerVentasPorMarca() {
+    List<MarcaVenta> listaMarcas = new ArrayList<>();
+    String sql = "CALL spVentasPorMarca()"; // Llamar al procedimiento almacenado
+
+    try (Connection con = MySQLConexion.getConexion(); 
+         PreparedStatement pst = con.prepareStatement(sql)) {
+        ResultSet rs = pst.executeQuery();
+        
+        while (rs.next()) {
+            MarcaVenta marcaVenta = new MarcaVenta();
+            marcaVenta.setMarca(rs.getString("marca"));
+            marcaVenta.setTotal(rs.getDouble("total")); 
+            listaMarcas.add(marcaVenta); 
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return listaMarcas; // Retornar la lista de ventas por marca
+}
+
+    
+    
+    
+    
 }
