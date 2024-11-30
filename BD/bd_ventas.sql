@@ -534,16 +534,28 @@ END //
 DELIMITER ;
 
 -- BORRA
-
-
 DELIMITER //
 
-CREATE PROCEDURE borrarProveedor(
-    IN p_cod_emp VARCHAR(50)
+DROP PROCEDURE IF EXISTS eliminarProveedor //
+
+CREATE PROCEDURE eliminarProveedor(
+    IN p_id_empresa VARCHAR(10)
 )
 BEGIN
-    DELETE FROM empresa
-    WHERE id_empresa = p_cod_emp;
+    -- Verificar si la empresa tiene productos asociados
+    DECLARE cantidad_productos INT;
+    
+    SELECT COUNT(*) INTO cantidad_productos
+    FROM Producto
+    WHERE id_empresa = p_id_empresa;
+
+    -- Condición para eliminar o no
+    IF cantidad_productos = 0 THEN
+        DELETE FROM Empresa WHERE id_empresa = p_id_empresa;
+        SELECT CONCAT('Proveedor con ID ', p_id_empresa, ' eliminado exitosamente.') AS Mensaje;
+    ELSE
+        SELECT CONCAT('No se puede eliminar el proveedor con ID ', p_id_empresa, ' porque tiene productos asociados.') AS Mensaje;
+    END IF;
 END //
 
 DELIMITER ;
@@ -600,5 +612,32 @@ BEGIN
     ORDER BY total DESC
     LIMIT 10;  -- Limitar a las 10 marcas con mayores ventas
 END //
+
+DELIMITER ;
+
+
+-- DETALLE DE PEDIDO POR ID_VENTA
+
+DELIMITER $$
+
+CREATE PROCEDURE obtenerDetallePedido(IN venta_id VARCHAR(20))
+BEGIN
+    SELECT 
+        v.id_venta, 
+        c.nombre AS nombre_cliente, 
+        p.nombre_producto, 
+        dv.cantidad, 
+        dv.precio_unitario
+    FROM 
+        venta v
+    LEFT JOIN 
+        cliente c ON c.id_cliente = v.id_cliente
+    LEFT JOIN 
+        detalle_venta dv ON dv.id_venta = v.id_venta
+    LEFT JOIN 
+        producto p ON p.id_producto = dv.id_producto
+    WHERE 
+        v.id_venta = venta_id;
+END $$
 
 DELIMITER ;

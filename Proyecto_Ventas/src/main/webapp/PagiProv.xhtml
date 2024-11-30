@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+
+    <h:head>
+        <title>Gestión de Proveedores</title>
+    </h:head>
+
+    <h:body>
+        <center>
+            <!-- Formulario para agregar proveedor -->
+            <h:form id="frmAddProv">
+                <p:commandButton value="Registrar Proveedor" oncomplete="PF('addProvDialog').show()" />
+            </h:form>    
+
+            <!-- Dialog para agregar proveedor -->
+            <p:dialog modal="true" widgetVar="addProvDialog" height="300" width="400">
+                <h:form id="frmAddProvForm">
+                    <p:panelGrid columns="2">
+                        <h:outputLabel value="Nombre de Empresa:" />
+                        <h:inputText value="#{controlProv.proveedor.nombre}" required="true" />
+
+                        <h:outputLabel value="Dirección:" />
+                        <h:inputText value="#{controlProv.proveedor.direccion}" required="true" />
+
+                        <h:outputLabel value="Teléfono:" />
+                        <h:inputText value="#{controlProv.proveedor.telefono}" />
+
+                        <h:outputLabel value="Email:" />
+                        <h:inputText value="#{controlProv.proveedor.email}" />
+                    </p:panelGrid> 
+
+                    <p:commandButton value="Grabar" action="#{controlProv.agregarProveedor()}"
+                                     update=":frmListProvs" oncomplete="PF('addProvDialog').hide()" />
+                </h:form>
+            </p:dialog>
+
+            <!-- Filtro de proveedores por empresa -->
+            <h:form id="frmFilterProv">
+                <p:outputLabel value="Filtrar por Empresa: " />
+                <h:inputText value="#{controlProv.idEmpresa}" />
+                <p:commandButton value="Filtrar" action="#{controlProv.filtrarProveedores()}" update=":frmListProvs" />
+            </h:form>
+
+            <!-- Lista de proveedores con paginación -->
+            <h:form id="frmListProvs">
+                <h2>Lista de Proveedores</h2>
+                <p:dataTable id="tableProvs" value="#{controlProv.listaProveedores}" var="prov" paginator="true" rows="6">
+                    <p:column headerText="Nombre de Empresa">
+                        <h:outputLabel value="#{prov.nombre}" />
+                    </p:column>
+                    <p:column headerText="Dirección">
+                        <h:outputLabel value="#{prov.direccion}" />
+                    </p:column>
+                    <p:column headerText="Teléfono">
+                        <h:outputLabel value="#{prov.telefono}" />
+                    </p:column>
+                    <p:column headerText="Ver Productos">
+                        <p:commandLink value="Ver Productos" actionListener="#{controlProv.obtenerProductosPorEmpresa(prov)}" update=":frmProducts"/>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+
+            <!-- Productos de la empresa seleccionada -->
+            <h:form id="frmProducts">
+                <h2>Productos de la Empresa Seleccionada</h2>
+                <p:dataTable value="#{controlProv.listaProductos}" var="prod">
+                    <p:column headerText="Código Producto">
+                        <h:outputLabel value="#{prod.codigo}" />
+                    </p:column>
+                    <p:column headerText="Nombre Producto">
+                        <h:outputLabel value="#{prod.nombre}" />
+                    </p:column>
+                    <p:column headerText="Precio">
+                        <h:outputLabel value="#{prod.precio}" />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </center>
+    </h:body>
+
+</html>

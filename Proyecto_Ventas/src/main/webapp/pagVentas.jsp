@@ -10,23 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ventas - Vega's Store</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Cargar Chart.js -->
-    <style>
-        /* Estilo para la disposición de gráficos */
-        .grafico-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-            grid-template-rows: repeat(1, 1fr); /* Una fila */
-            gap: 20px; /* Espacio entre los gráficos */
-            justify-items: center; /* Centrar los gráficos horizontalmente */
-            align-items: center; /* Centrar los gráficos verticalmente */
-            max-width: 800px; /* Ancho máximo para centrar el contenido */
-            margin: 0 auto; /* Centrar en la pantalla */
-        }
-        canvas {
-            width: 400px !important; /* Ancho fijo para el gráfico */
-            height: 200px !important; /* Alto fijo para el gráfico */
-        }
-    </style>
+    
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
 

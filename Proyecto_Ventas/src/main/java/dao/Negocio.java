@@ -31,15 +31,8 @@ public class Negocio {
                 lista.add(p);
             }
         } catch (SQLException ex) {
+       } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (st != null) st.close();
-                if (cn != null) cn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return lista;
     }
@@ -70,58 +63,27 @@ public class Negocio {
                 lista.add(p);
             }
         } catch (SQLException ex) {
+       } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (st != null) st.close();
-                if (cn != null) cn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return lista;
     }
     
-    
-    
-    
-    
-    
-    
-
-
-    
 
 // Método para agregar un nuevo proveedor
-public boolean agregarProveedor(Empresas proveedor) {
-    Connection cn = MySQLConexion.getConexion();
-    boolean exito = false; // Variable para indicar el éxito de la operación
-    try {
-        String sql = "{CALL AgregarProveedor(?, ?, ?, ?)}"; // Llamada al procedimiento (sin el id_empresa)
-        PreparedStatement st = cn.prepareStatement(sql);
-        
+public void agregarProveedor(Empresas proveedor) {
+    Connection cn=MySQLConexion.getConexion();
+    String sql="{CALL AgregarProveedor(?, ?, ?, ?)}"; 
+        try{ 
+            CallableStatement st=cn.prepareCall(sql);
         // Estableciendo los parámetros del procedimiento (sin el id_empresa)
         st.setString(1, proveedor.getNom_emp());
         st.setString(2, proveedor.getDirec_emp());
         st.setString(3, proveedor.getTelef_emp());
         st.setString(4, proveedor.getEmail_emp());
-
-        // Ejecutando el procedimiento
-        st.executeUpdate();
-        exito = true; // Si no hay excepciones, la operación fue exitosa
-    } catch (SQLException ex) {
-        ex.printStackTrace(); // Manejo de excepciones
-    } finally {
-        try {
-            if (cn != null) {
-                cn.close(); // Cerrar la conexión
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    return exito; // Retornar el resultado de la operación
+      }catch(Exception ex){
+          ex.printStackTrace();
+      }
 }
 
 
@@ -139,17 +101,9 @@ public void modificarProveedor(Empresas proveedor) {
         st.setString(4, proveedor.getTelef_emp());
         st.setString(5, proveedor.getEmail_emp());
         st.execute();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        try {
-            if (cn != null) {
-                cn.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+    }catch(Exception ex){
+          ex.printStackTrace();
+      }
 }
 
 // Método para borrar proveedor
@@ -160,17 +114,9 @@ public void borrarProveedor(String codEmp) {
         CallableStatement st = cn.prepareCall(sql);
         st.setString(1, codEmp);
         st.execute();
-    } catch (SQLException ex) {
-        ex.printStackTrace();
-    } finally {
-        try {
-            if (cn != null) {
-                cn.close();
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+     }catch(Exception ex){
+          ex.printStackTrace();
+      }
 }
 
 // LISTA Productos
@@ -201,15 +147,8 @@ public void borrarProveedor(String codEmp) {
                 lista.add(p);
             }
         } catch (SQLException ex) {
+       } catch (Exception ex) {
             ex.printStackTrace();
-        } finally {
-            try {
-                if (rs != null) rs.close();
-                if (st != null) st.close();
-                if (cn != null) cn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
         }
         return lista;
     }

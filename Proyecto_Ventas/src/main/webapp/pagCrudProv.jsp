@@ -10,136 +10,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestión de Proveedores</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-         
-        :root {
-            --dark-color: #243642;  
-            --medium-dark-color: #387478;  
-            --light-color: #629584; 
-            --extra-light-color: #E2F1E7;  
-        }
-
-        /* Estilos generales */
-        body, html {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: var(--extra-light-color);  
-            color: var(--dark-color); 
-        }
-
-        /* Estilos de la cabecera  */
-        header {
-            background-color: var(--dark-color);  
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-
-        nav {
-            background-color: var(--medium-dark-color);
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            padding: 8px 16px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-
-        nav a:hover {
-            background-color: var(--light-color); 
-        }
-
-        /* Estilos del contenido */
-        h1, h2 {
-            color: var(--dark-color);
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        form {
-            background-color: var(--light-color); 
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            max-width: 600px;
-        }
-
-        input[type="text"],
-        input[type="email"] {
-            width: calc(100% - 22px);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid var(--dark-color); 
-            border-radius: 4px;
-        }
-
-        button {
-            background-color: var(--medium-dark-color); 
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 5px;
-        }
-
-        button:hover {
-            background-color: var(--dark-color); 
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid var(--light-color);
-        }
-
-        th {
-            background-color: var(--extra-light-color); 
-        }
-
-        tr:hover {
-            background-color: var(--extra-light-color); 
-        }
-
-        /* Estilo de acciones en la tabla */
-        .acciones button {
-            background-color: var(--dark-color); 
-        }
-
-        .acciones button:hover {
-            background-color: var(--medium-dark-color); 
-        }
-
-        /* Estilo del pie de página */
-        footer {
-            background-color: var(--dark-color); 
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: relative; 
-            bottom: 0;
-            width: 100%;
-            margin-top: 20px; 
-        }
-    </style>
+    <!-- Enlazamos el archivo de estilos CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
@@ -147,6 +19,7 @@
     <h1>Sistema Control de Ventas - Proveedores</h1>
 </header>
 
+    
 <nav>
     <a href="Menu_Principal.jsp">INICIO</a>
     <a href="pagCrudProv.jsp">PROVEEDORES</a>

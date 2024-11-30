@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.Productos" %>
 <%@ page import="modelo.Empresas" %>
@@ -8,32 +7,17 @@
 <html>
 <head>
     <title>Listado de Productos</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
-    <style>
-        /* Estilo básico para la página */
-        .container {
-            width: 80%;
-            margin: 0 auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Listado de Productos</h1>
+        <header>
+            <h1>Listado de Productos</h1>
+        </header>
 
         <!-- Filtros -->
-        <div>
+        <div class="filtros">
             <label for="buscarGeneral">Buscar: </label>
             <input type="text" id="buscarGeneral" placeholder="Buscar productos...">
 
@@ -52,8 +36,6 @@
                 %>
             </select>
         </div>
-
-        <br>
 
         <!-- Tabla de productos -->
         <table id="tablaProductos">
@@ -89,7 +71,9 @@
             </tbody>
         </table>
 
-        <a href="Menu_Principal.jsp">Volver al Menú Principal</a>
+        <footer>
+            <a href="Menu_Principal.jsp" class="boton-regreso">Volver al Menú Principal</a>
+        </footer>
     </div>
 
     <!-- Scripts para DataTables y jQuery -->
